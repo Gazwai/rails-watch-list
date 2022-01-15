@@ -1,0 +1,21 @@
+<div class="container">
+  <h1><%= @list.name %></h1>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <% if @list.bookmarks.present? %>
+        <div class="container">
+          <div class="row">
+            <% @list.bookmarks.each do |bookmark| %>
+                <p>Movie Title: <%= Movie.find(bookmark.movie_id).title %></p>
+                <p>Remark: <%= bookmark.comment %></p>
+                <%= image_tag Movie.find(bookmark.movie_id).poster_url, alt: "Le Wagon", width: 200 %>
+              <% end %>
+      <% else %>
+        <h2>No bookmarks yet, add some!</h2>
+      <% end %>
+      <p>add a new bookmark</p>
+      <%= link_to 'Add', new_list_bookmark_path(@list)  %>
+    </div>
