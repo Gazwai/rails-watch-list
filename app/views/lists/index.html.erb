@@ -1,19 +1,22 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/background.png);">
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(/assets/movie_banner.jpeg);">
   <div class="container">
-    <h1>Organise your movies!</h1>
+    <h1>List</h1>
   </div>
 </div>
 
 <div class="container">
-  <div class="row">
+  <div class="row mg-3 mt-3" >
     <div class="col-8">
       <% if @lists.present? %>
         <div class="container">
           <div class="row">
             <% @lists.each do |list| %>
               <ul>
-                <h1><%= link_to list.name , list_path(list) %></h1>
-
+                <div class="card" style="width: 18rem;">
+                  <img src="/assets/movie_camera.png" class="card-img-top">
+                  <div class="card-body">
+                    <a href= <%= list_path(list) %> class="btn btn-primary"><%= list.name %></a>
+                  </div>
               </ul>
             <% end %>
           </div>
@@ -21,10 +24,6 @@
       <% else %>
         <h2>No lists yet, add some!</h2>
       <% end %>
-    </div>
-    <div class="col-4">
-      <h2>Add a list:</h2>
-      <%= link_to 'Add', new_list_path  %>
     </div>
   </div>
 </div>

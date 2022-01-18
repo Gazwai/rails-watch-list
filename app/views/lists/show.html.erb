@@ -1,5 +1,6 @@
-<div class="container">
+<div class="container mb-3">
   <h1><%= @list.name %></h1>
+  <h3><%= link_to 'Add a new bookmark', new_list_bookmark_path(@list) %></h3>
 </div>
 
 <div class="container">
@@ -9,13 +10,25 @@
         <div class="container">
           <div class="row">
             <% @list.bookmarks.each do |bookmark| %>
-                <p>Movie Title: <%= Movie.find(bookmark.movie_id).title %></p>
-                <p>Remark: <%= bookmark.comment %></p>
-                <%= image_tag Movie.find(bookmark.movie_id).poster_url, alt: "Le Wagon", width: 200 %>
+              <div class="col-6">
+                <div class="card-trip mb-3">
+                  <div class="card-tags">
+                    <div class="card" style="width: 18rem;">
+                      <img src=<%= Movie.find(bookmark.movie_id).poster_url %> class="card-img-top">
+                      <div class="card-body">
+                        <h5 class="card-title"><%= Movie.find(bookmark.movie_id).title %></h5>
+                        <p class="card-text"><%= bookmark.comment %></p>
+                        <%= link_to "Delete", bookmark_path(bookmark), method: :delete, data: {confirm: "Are you sure?"} %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <% end %>
-      <% else %>
-        <h2>No bookmarks yet, add some!</h2>
+        <% else %>
+          <h2>No bookmarks yet, add some!</h2>
       <% end %>
-      <p>add a new bookmark</p>
-      <%= link_to 'Add', new_list_bookmark_path(@list)  %>
+    </div>
+    <div>
+
     </div>

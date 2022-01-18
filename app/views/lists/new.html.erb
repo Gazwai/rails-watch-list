@@ -1,4 +1,6 @@
-<%= simple_form_for [@list] do |f| %>
-  <%= f.input :name, placeholder: "Classic" %>
-  <%= f.submit "Add", class: "btn btn-primary" %>
-<% end %>
+<div class="container">
+  <%= simple_form_for [@list] do |f| %>
+    <%= f.input :name, placeholder: "List name" %>
+    <%= f.submit "Add list", class: "btn btn-primary" %>
+  <% end %>
+</div>
