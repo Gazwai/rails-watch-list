@@ -1,6 +1,12 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(/assets/movie_banner.jpeg);">
   <div class="container">
-    <h1>List</h1>
+    <div class="d-grid gap-2">
+      <div>
+        <h1>A place to hold all the movies you <strong>need</strong> to see </h1>
+        <p>It's easy and free to save your movies of any genre and connect with millions of others.</p>
+        <a href= <%= new_list_path %> class="btn btn-outline-secondary btn-lg rounded-pill">Start a list</a>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -13,9 +19,11 @@
             <% @lists.each do |list| %>
               <ul>
                 <div class="card" style="width: 18rem;">
+                  <a href= <%= list_path(list) %>>
                   <img src="/assets/movie_camera.png" class="card-img-top">
+                  </a>
                   <div class="card-body">
-                    <a href= <%= list_path(list) %> class="btn btn-primary"><%= list.name %></a>
+                    <a href= <%= list_path(list) %> class="btn btn-outline-secondary btn-lg rounded-pill"><%= list.name %></a>
                   </div>
               </ul>
             <% end %>
@@ -23,6 +31,12 @@
         </div>
       <% else %>
         <h2>No lists yet, add some!</h2>
+      <% end %>
+    </div>
+    <div class=col-4>
+      <%= simple_form_for [@list] do |f| %>
+        <%= f.input :name, placeholder: "List name" %>
+        <%= f.submit "Add list", class: "btn btn-primary" %>
       <% end %>
     </div>
   </div>
